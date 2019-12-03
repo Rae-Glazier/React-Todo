@@ -1,11 +1,16 @@
 import React from 'react';
+import './Todo.css';
 
-const item = props => {
+function ToDo({ todo, toggleCompleted }) {
     return (
-        <div className={`item${props.item.completed ? 'completed' : ''}`}>
-            <p>{props.item.name}</p>
-        </div>
-    );
-};
+      <li
+        className = {todo.completed ? `completed` : ''}
+        onClick = {() => toggleCompleted(todo.id)}
+      >
+        {todo.task}
 
-export default item; 
+      </li>
+    );
+  }
+  
+  export default ToDo;

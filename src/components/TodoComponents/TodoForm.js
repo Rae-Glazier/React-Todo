@@ -1,39 +1,53 @@
 import React from 'react';
+import styled from 'styled-components';
 
-class ToDoForm extends React.Component{
-    constructor() {
-        super();
-        this.state = {
-            newItem: ''
-        };
+const Button = styled.button`
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px dashed white;
+  color: palevioletred
+  background: white
+  border-radius: 5px;
+`;
+
+class ToDoForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        newTask: ''
+      };
     }
-
-    handleChanges = e => {
-        this.setState({ newItem: e.target.value })
-    }
-
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.addItem(this.state.newItem);
-        this.setState({
-            newItem: ''
-        });
+  
+    handleInput = e => {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
     };
-
+  
+    handleSubmit = e => {
+      e.preventDefault();
+      this.setState({
+        newTask: ''
+      });
+      this.props.handleSubmit(e, this.state.newTask);
+    };
+  
     render() {
-        console.log('rendering');
-        return(
-            <form onSubmit={this.handleSubmit}>
-                <input 
-                    value = {this.state.newItem}
-                    onChange = {this.handleChanges}
-                    type = 'text'
-                    name = 'item'
-                />
-                <button>Add</button>
-            </form>
-        );
+      return (
+        <>
+          <form onSubmit = {this.handleSubmit}>
+            <input
+              value = {this.state.newTask}
+              name = "newTask"
+              placeholder = "new task"
+              onChange = {this.handleInput}
+            />
+            <Button type = "submit"> Add Task </Button>
+          </form>
+          <Button onClick = {this.props.clearCompleted}> Clear Completed </Button>
+        </>
+      );
     }
-}
-
-export default ToDoForm;
+  }
+  
+  export default ToDoForm;

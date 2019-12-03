@@ -2,19 +2,45 @@
 // feel free to change this component.js into TodoList.js
 
 import React from 'react';
-import Item from './Todo';
+import ToDo from './Todo';
 
-const TodoList =  props => {
-    return (
-        <div className = 'todo-list'>
-            {props.list.map( item => (
-                <Item key={item.id} item={item} />
-            ))}
-            <button className='clear-btn' onClick={props.clearCompleted}>
-                Clear Completed
-            </button>
-        </div>
-    );
-};
-
-export default TodoList;
+class ToDoList extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        searchInput: ""
+      };
+    }
+  
+    handleSearch = e => {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+    };
+  
+    render() {
+      return (
+        <>
+          <input
+            value = {this.state.searchInput}
+            name = "searchInput"
+            onChange = {this.handleSearch}
+            placeholder = 'search'
+          />
+          <ul>
+            {this.props.todos.map(
+              todo =>
+                todo.task.includes(this.state.searchInput) && (
+                  <ToDo
+                    todo = {todo}
+                    toggleCompleted = {this.props.toggleCompleted}
+                  />
+                )
+            )}
+          </ul>
+        </>
+      );
+    }
+  }
+  
+  export default ToDoList;
