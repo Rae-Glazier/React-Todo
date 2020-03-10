@@ -3,17 +3,22 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
-// import './components/TodoComponents/Todo.css';
+import './components/TodoComponents/Todo.css';
 
 const data = [
     {
-      task: 'Organize Garage',
+      task: 'U3-S1-D1: React-Todo',
       id: 1528817077286,
       completed: false
     },
     {
-      task: 'Bake Cookies',
+      task: 'U3-S1-D2: Lecture',
       id: 1528817084358,
+      completed: false
+    },
+    {
+      task: 'U3-S1-D2: React Github User Card',
+      id: 1528817084498,
       completed: false
     }
 ];
@@ -71,7 +76,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-        <h2> Rae's To-Do App</h2>
+        <h2> Rae's List of Stuff</h2>
         <TodoForm 
           addItem={this.addItem}
           />

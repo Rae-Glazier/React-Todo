@@ -32,7 +32,7 @@ class TodoForm extends React.Component {
                     type="text"
                     name="item"
                     value={this.state.item}
-                    placeholder='...todo'
+                    placeholder='...procrastination...'
                     onChange={this.handleChanges}
                 />
                 <button>Add</button>
