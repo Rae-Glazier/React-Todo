@@ -3,7 +3,7 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
-import './components/TodoComponents/Todo.css';
+// import './components/TodoComponents/Todo.css';
 
 const todos = [
     {
@@ -62,12 +62,12 @@ class App extends React.Component {
       <div className="App">
         <div className="header">
         <h2> Rae's To-Do App</h2>
+        <TodoList todos={this.state.todos}
+          toggleCompleted={this.toggleCompleted}/>
+        </div>
         <TodoForm 
           addItem={this.addItem}
           />
-        </div>
-        <TodoList todos={this.state.todos}
-          toggleCompleted={this.toggleCompleted}/>
       </div>
     );
   }

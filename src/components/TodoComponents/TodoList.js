@@ -3,8 +3,9 @@ import React from "react";
 import Todo from './Todo';
 
 const TodoList = props => {
+    console.log('todo list working')
     return(
-        <div>
+        <div className='todo-list'>
             {props.todos.map(item => (
         <Todo
           key={item.id}
@@ -12,9 +13,6 @@ const TodoList = props => {
           toggleCompleted={props.toggleCompleted}
         />
       ))}
-      <button className="clear-btn" onClick={props.clearCompleted}>
-        Clear Completed
-      </button>
         </div>
     )
 }
