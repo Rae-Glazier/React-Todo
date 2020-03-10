@@ -16,10 +16,11 @@ class TodoForm extends React.Component {
 
     handleSubmit = e => {
       e.preventDefault();
-      this.handleSubmit(this.state.item);
-      this.setState({
-        item: ""
-      });
+      if(this.state.item !== ''){
+        this.props.addItem(this.state.item);
+        this.setState({
+            item: ""
+      });}
     };
   
     render() {
@@ -34,9 +35,9 @@ class TodoForm extends React.Component {
                     placeholder='...todo'
                     onChange={this.handleChanges}
                 />
-                <button type='submit'>Add</button>
+                <button>Add</button>
             </form>
-            <button>Clear</button>
+            
           </div>
         
         

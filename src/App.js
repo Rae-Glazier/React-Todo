@@ -5,7 +5,7 @@ import TodoForm from './components/TodoComponents/TodoForm';
 
 // import './components/TodoComponents/Todo.css';
 
-const todos = [
+const data = [
     {
       task: 'Organize Garage',
       id: 1528817077286,
@@ -25,7 +25,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todos,
+      todos: data,
       name: ''
     }
   }
@@ -46,15 +46,25 @@ class App extends React.Component {
     });
   };
 
-  addItem = itemName => {
-    const newItem = {
-      name: itemName,
-      id: new Date(),
-      completed: false
-    };
+  clearCompleted = () =>{
     this.setState({
-      todos: [...this.state.todos, newItem]
-    });
+      todos: this.state.todos.filter(todo => {
+        return !todo.completed;
+      })
+    })
+  }
+
+  addItem = itemName => {
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          task: itemName,
+          id: Date.now(),
+          completed: false
+        }
+      ]
+    })
   };
 
   render() {
@@ -62,11 +72,13 @@ class App extends React.Component {
       <div className="App">
         <div className="header">
         <h2> Rae's To-Do App</h2>
-        <TodoList todos={this.state.todos}
-          toggleCompleted={this.toggleCompleted}/>
-        </div>
         <TodoForm 
           addItem={this.addItem}
+          />
+        </div>
+        <TodoList todos={this.state.todos}
+          toggleCompleted={this.toggleCompleted}
+          clearCompleted={this.clearCompleted}
           />
       </div>
     );
